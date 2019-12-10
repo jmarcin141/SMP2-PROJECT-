@@ -1,6 +1,5 @@
 #include "adc.h"
 
-
 #define bit_length 15
 
 void ADCInitialize(){
