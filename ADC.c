@@ -1,5 +1,6 @@
 #include "adc.h"
 
+// smp2 project
 #define bit_length 15
 
 void ADCInitialize(){
