@@ -21,7 +21,6 @@ Engine steering by IRDA remote control.
 	Universal assembly board, pinout for controls, 
 	
 
-
 Autohrs:
 Grzegorz Jurek,
 Jakub Marcinkowski
