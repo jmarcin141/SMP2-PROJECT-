@@ -1,3 +1,9 @@
+<embed src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/KONSPEKT.pdf" width="500" height="375" type="application/pdf">
+ 
+<embed src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/KONSPEKT.pdf" width="500" height="375">
+
+<iframe src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/KONSPEKT.pdf&embedded=true" style="width:718px; height:700px;" frameborder="0"></iframe>
+
 ## SMP2-PROJECT-Engine steering by IRDA remote control. 
 <p align="center">
 PROJECT - CONSPECT
@@ -22,8 +28,7 @@ PROJECT - CONSPECT
 	
 	## [PL]	
 	
-<embed src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/KONSPEKT.pdf" width="500" height="375" 
- type="application/pdf">
+
 	
 ## Opis szczegółowy:
 	Celem naszego projektu jest rozbudowa silnika prądu stałego sterowanego przez pilot IRDA.
