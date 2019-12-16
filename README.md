@@ -3,25 +3,25 @@
 PROJECT - CONSPECT
 </p>
 
-## 	QUICK INTRO<p>[EN]</p>
+## 	QUICK INTRO[EN]
 ## => Design Assumptions:
 - IRDA Remote control.
-	4 buttons. 
-	<n>Rotate - Left, Right</n>
-	<n>Speed adjustment - Up, Down.</n>
+	<p>- 4 buttons.</p> 
+	<p>- Rotate - Left, Right</p>
+	<p>- Speed adjustment - Up, Down.</p>
 
 - KL05 board.
-	<n>configuration Ports, PWM, UART.</n>
+	<p>- configuration Ports, PWM, UART.</p>
 
 - Engine.
-<p>Universal DC - Power supply 5V,</p>
-<p>H-bridge integrated Circuit.</p>
+	<p>- Universal DC - Power supply 5V,</p>
+	<p>- H-bridge integrated Circuit.</p>
 
 ## => Implementation:
 	Universal assembly board, pinout for controls, 
 	
 	
-## 	<p>[PL]</p>	
+## 	[PL]	
 ## Opis szczegółowy:
 	Celem naszego projektu jest rozbudowa silnika prądu stałego sterowanego przez pilot IRDA.
 	Regulacja prędkości obrotów za pomocą PWM i kilku przycisków na pilocie IR.
