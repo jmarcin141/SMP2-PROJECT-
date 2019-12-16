@@ -3,7 +3,7 @@
 PROJECT - CONSPECT
 </p>
 
-## 	QUICK INTRO[EN]
+## 	QUICK INTRO<p>[EN]</p>
 ## => Design Assumptions:
 	- IRDA Remote control.
 	4 buttons. 
@@ -22,7 +22,6 @@ PROJECT - CONSPECT
 	
 	
 ## 	<p>[PL]</p>	
-	
 ## Opis szczegółowy:
 	Celem naszego projektu jest rozbudowa silnika prądu stałego sterowanego przez pilot IRDA.
 	Regulacja prędkości obrotów za pomocą PWM i kilku przycisków na pilocie IR.
@@ -33,7 +32,7 @@ PROJECT - CONSPECT
 	naszej pracy będzie modyfikacja działania układu z ATmegi32 na Kl05.
 
 <p align="center">
-	<img src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/rys1.jpg" width="50%" />
+	<img src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/rys1.jpg" width="85%" />
 </p>
 
 ## Plan realizacji:
@@ -44,7 +43,7 @@ PROJECT - CONSPECT
 	programu o interfejsie graficznym (Labview).
 
 <p align="center">
-	<img src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/rys2.jpg" width="50%" />
+	<img src="https://github.com/jmarcin141/SMP2-PROJECT-/blob/master/attachments/rys2.jpg" width="70%" />
 </p>
 
 ## Authors:
