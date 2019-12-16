@@ -5,20 +5,20 @@ PROJECT - CONSPECT
 
 ## 	QUICK INTRO<p>[EN]</p>
 ## => Design Assumptions:
-	- IRDA Remote control.
+- 	IRDA Remote control.
 	4 buttons. 
 	Rotate - Left, Right
 	Speed adjustment - Up, Down.
 
-	- KL05 board.
+- 	KL05 board.
 	configuration Ports, PWM, UART.
 
-	- Engine.
-	Universal DC - Power supply 5V,
-	H-bridge integrated Circuit.
+- Engine.
+Universal DC - Power supply 5V,
+H-bridge integrated Circuit.
 
 ## => Implementation:
-	- Universal assembly board, pinout for controls, 
+	Universal assembly board, pinout for controls, 
 	
 	
 ## 	<p>[PL]</p>	
