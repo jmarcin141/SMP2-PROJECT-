@@ -1,21 +1,22 @@
 #include "MKL05Z4.h"
 
-#include "leds.h"
+/*
+		MKL05Z32VFM4
+*/
 
+
+#include "PWM.h"
 
 int main(){
-	ledsInit();
+	//ledsInit();
+	PWMInitialize();
+	
+PWMset(4700,4400,4900);
+//PWMsetCh1(4500);
+//PWMsetCh2(4500);
+
 	
 	while(1){
-		
-		for(int i=0;i<600000;i++){
-			ledsOn(ledSky);
-		}
-		ledsOff(ledWhite);
-		for(int i=0;i<600000;i++){
-			ledsOn(ledPink);
-		}
-		ledsOff(ledWhite);
 	}
 	return 0;
 }

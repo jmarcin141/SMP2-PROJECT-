@@ -3,9 +3,9 @@
 void ledsInit(void){
 	
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK; //Enable clock to port B
-	PORTB->PCR[8] = PORT_PCR_MUX(1UL); // PIN PTB 8-10 is GPIO 
-	PORTB->PCR[9] = PORT_PCR_MUX(1UL); 
-	PORTB->PCR[10] = PORT_PCR_MUX(1UL); 
+	//PORTB->PCR[8] = PORT_PCR_MUX(1UL); // PIN PTB 8-10 is GPIO 
+	//PORTB->PCR[9] = PORT_PCR_MUX(1UL); 
+	//PORTB->PCR[10] = PORT_PCR_MUX(1UL); 
 	
 	PTB->PDDR |= red_mask; //enable PTB 8...10 as output
 	PTB->PDDR |= green_mask;
