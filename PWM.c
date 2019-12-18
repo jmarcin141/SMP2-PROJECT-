@@ -3,9 +3,12 @@
 void PWMInitialize(){
 
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
-	PORTB->PCR[8] |= PORT_PCR_MUX(2UL); // TPM0_CH3
+	PORTB->PCR[8] |= PORT_PCR_MUX(1UL); // TPM0_CH3
 	PORTB->PCR[9] |= PORT_PCR_MUX(2UL); // TPM0_CH2
 	PORTB->PCR[10] |= PORT_PCR_MUX(2UL); //TPM0_CH1
+	
+	PTB->PDDR |= 1UL<<8; //enable PTB 8...10 as output
+	PTB->PSOR |= 1UL<<8;
 	
 	SIM->SOPT2 |= SIM_SOPT2_TPMSRC(1); 	// 01 MCGFLLCLK clock = 47972352u = 47,98MHz
 	// 11 MCGIRCLK clock	>> MCG->C1 |= MCG_C1_IRCLKEN_MASK; MCG->C1 |= MCG_C1_IREFS_MASK;
@@ -43,22 +46,30 @@ void PWMInitialize(){
 void PWMsetCh1(uint16_t channel){
 
 	while( !(TPM0->STATUS & TPM_STATUS_TOF_MASK )) { }
-	TPM0->CONTROLS[1].CnV |= TPM_CnV_VAL(channel);
+	
+	TPM0->SC |= TPM_SC_CMOD(0); // wylaczenie , zaladowanie wypelnienia, wlaczenie PWM
+	TPM0->CONTROLS[1].CnV = TPM_CnV_VAL(channel);
+	TPM0->SC |= TPM_SC_CMOD(1);
 }
 
 void PWMsetCh2(uint16_t channel){
 
 	while( !(TPM0->STATUS & TPM_STATUS_TOF_MASK )) { }
-	TPM0->CONTROLS[2].CnV |= TPM_CnV_VAL(channel);
+	
+	TPM0->SC |= TPM_SC_CMOD(0);
+	TPM0->CONTROLS[2].CnV = TPM_CnV_VAL(channel);
+	TPM0->SC |= TPM_SC_CMOD(1);
 }
 
 void PWMset(uint16_t channel1, uint16_t channel2, uint16_t channel3){
 
 	while( !(TPM0->STATUS & TPM_STATUS_TOF_MASK )) { }
 	
-	TPM0->CONTROLS[1].CnV |= TPM_CnV_VAL(channel1);
-	TPM0->CONTROLS[2].CnV |= TPM_CnV_VAL(channel2);
-	TPM0->CONTROLS[3].CnV |= TPM_CnV_VAL(channel3);
+	TPM0->SC |= TPM_SC_CMOD(0);
+	TPM0->CONTROLS[1].CnV = TPM_CnV_VAL(channel1);
+	TPM0->CONTROLS[2].CnV = TPM_CnV_VAL(channel2);
+	TPM0->CONTROLS[3].CnV = TPM_CnV_VAL(channel3);
+	TPM0->SC |= TPM_SC_CMOD(1);
 }
 
 void TPM0_IRQHandler(){

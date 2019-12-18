@@ -6,3 +6,4 @@
 .\objects\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h
 .\objects\main.o: PWM.h
+.\objects\main.o: ADC.h
