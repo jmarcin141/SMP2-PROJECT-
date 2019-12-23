@@ -1,29 +1,16 @@
 # SMP2-PROJECT-
-PROJECT - CONSPECT
 
-Engine steering by IRDA remote control.
+## KL05
+## Użyte piny, wyprowadzenia, moduły , liczniki, peryferia
 
+## PINOUT:
+- PTB1 - (in) sygnał z odbiornika IR;
+- PTA9 - (in) sygnał z joysticka (potencjometr);
+- PTB10 - (out) sygnał pwm dla TPM0_CH1 - T2;
+- PTB9 - (out) sygnał pwm dla TPM0_CH2 - T1;
+- PTBx - (out) sygnal odblokowujący mostek H - ENABLE;
 
-
-=> Design Assumptions:
-1) IRDA Remote control.
-	4 buttons. 
-	Rotate - Left, Right
-	Speed adjustment - Up, Down.
-
-2) KL05 board.
-	configuration Ports, PWM, UART.
-
-3) Engine.
-	Universal DC - Power supply 5V,
-	H-bridge integrated Circuit.
-
-=> Implementation:
-	Universal assembly board, pinout for controls, 
-	
-
-
-Autohrs:
-Grzegorz Jurek,
-Jakub Marcinkowski
-		 
+## MODUŁY:
+- TPM0 - (CH1, CH2) - PWM. CH1 - lewo, CH2 - prawo;
+- ADC0 - (SE2 AD2) - Joystick;
+- UART0 ;
