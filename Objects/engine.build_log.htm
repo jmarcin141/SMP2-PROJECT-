@@ -22,46 +22,30 @@ Dialog DLL:      TARMCM1.DLL V1.14.0.0
  
 <h2>Project:</h2>
 F:\AGH\Semestr 5\SMP2\Projekty\SMP2-PROJECT-\engine.uvprojx
-Project File Date:  12/16/2019
+Project File Date:  12/23/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'CMSIS-DAP'
-compiling ADC.c...
-adc.h(23): warning:  #1295-D: Deprecated declaration ADCInitialize - give arg types
-  void ADCInitialize();
-adc.h(25): warning:  #1295-D: Deprecated declaration ADCCalibration - give arg types
-  void ADCCalibration();
-PWM.h(7): warning:  #1295-D: Deprecated declaration PWMInitialize - give arg types
-  void PWMInitialize();
-PWM.h(14): warning:  #1295-D: Deprecated declaration TPM0_IRQHandler - give arg types
-  void TPM0_IRQHandler();
-ADC.c(100): warning:  #111-D: statement is unreachable
-  			break;
-ADC.c(109): warning:  #111-D: statement is unreachable
-  			break;
-ADC.c(111): warning:  #940-D: missing return statement at end of non-void function "ADCRead" 
-  }
-ADC.c(83): warning:  #550-D: variable "V_sensor"  was set but never used
-  	float V_sensor = 0;
-ADC.c: 8 warnings, 0 errors
 compiling main.c...
-PWM.h(7): warning:  #1295-D: Deprecated declaration PWMInitialize - give arg types
-  void PWMInitialize();
-PWM.h(14): warning:  #1295-D: Deprecated declaration TPM0_IRQHandler - give arg types
-  void TPM0_IRQHandler();
 ADC.h(23): warning:  #1295-D: Deprecated declaration ADCInitialize - give arg types
   void ADCInitialize();
 ADC.h(25): warning:  #1295-D: Deprecated declaration ADCCalibration - give arg types
   void ADCCalibration();
-main.c(28): warning:  #111-D: statement is unreachable
+engine.h(11): warning:  #1295-D: Deprecated declaration engineInitialize - give arg types
+  void engineInitialize();
+engine.h(22): warning:  #1295-D: Deprecated declaration engine_IRQHandler - give arg types
+  void engine_IRQHandler();
+irReceiver.h(8): warning:  #1295-D: Deprecated declaration irReceiverInitialize - give arg types
+  void irReceiverInitialize();
+main.c(41): warning:  #111-D: statement is unreachable
   	return 0;
-main.c(29): warning:  #1-D: last line of file ends without a newline
+main.c(42): warning:  #1-D: last line of file ends without a newline
   }
-main.c: 6 warnings, 0 errors
+main.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=2624 RO-data=272 RW-data=0 ZI-data=352  
-".\Objects\engine.axf" - 0 Error(s), 14 Warning(s).
+Program Size: Code=1376 RO-data=208 RW-data=0 ZI-data=352  
+".\Objects\engine.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -90,7 +74,7 @@ Package Vendor: Keil
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\system_MKL05Z4.c
       Source file:   Device\Source\ARM\startup_MKL05Z4.s
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

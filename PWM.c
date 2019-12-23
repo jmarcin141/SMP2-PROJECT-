@@ -3,15 +3,13 @@
 void PWMInitialize(){
 
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
-	PORTB->PCR[8] |= PORT_PCR_MUX(1UL); // TPM0_CH3
+	//PORTB->PCR[8] |= PORT_PCR_MUX(1UL); // TPM0_CH3
 	PORTB->PCR[9] |= PORT_PCR_MUX(2UL); // TPM0_CH2
 	PORTB->PCR[10] |= PORT_PCR_MUX(2UL); //TPM0_CH1
 	
-	PTB->PDDR |= 1UL<<8; //enable PTB 8...10 as output
-	PTB->PSOR |= 1UL<<8;
-	
 	SIM->SOPT2 |= SIM_SOPT2_TPMSRC(1); 	// 01 MCGFLLCLK clock = 47972352u = 47,98MHz
 	// 11 MCGIRCLK clock	>> MCG->C1 |= MCG_C1_IRCLKEN_MASK; MCG->C1 |= MCG_C1_IREFS_MASK;
+
 
 	SIM->SCGC6 |= SIM_SCGC6_TPM0_MASK; // clock enabled
 	
@@ -22,7 +20,7 @@ void PWMInitialize(){
 //	period = MOD + 1
 //	pulse width = CnV (duty Cycles)
 	
-	TPM0->MOD = TPM_MOD_MOD(4905);
+	TPM0->MOD = TPM_MOD_MOD(4095);
 	
 	TPM0->CONTROLS[1].CnSC |= TPM_CnSC_MSB_MASK | TPM_CnSC_ELSB_MASK;
 	TPM0->CONTROLS[2].CnSC |= TPM_CnSC_MSB_MASK | TPM_CnSC_ELSB_MASK;

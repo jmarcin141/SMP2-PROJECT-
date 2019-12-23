@@ -1,0 +1,9 @@
+.\objects\engine.o: engine.c
+.\objects\engine.o: engine.h
+.\objects\engine.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h
+.\objects\engine.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm0plus.h
+.\objects\engine.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\engine.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmInstr.h
+.\objects\engine.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h
+.\objects\engine.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h
+.\objects\engine.o: PWM.h
