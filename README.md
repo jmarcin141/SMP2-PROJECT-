@@ -6,8 +6,8 @@
 ## PINOUT:
 - PTB1 - (in) sygnał z odbiornika IR;
 - PTA9 - (in) sygnał z joysticka (potencjometr);
-- PTB10 - (out) sygnał pwm dla TPM0_CH1 - T2;
-- PTB9 - (out) sygnał pwm dla TPM0_CH2 - T1;
+- PTB10 - (out) sygnał pwm dla TPM0_CH1 - T2 (lewo);
+- PTB9 - (out) sygnał pwm dla TPM0_CH2 - T1 (prawo);
 - PTBx - (out) sygnal odblokowujący mostek H - ENABLE;
 
 ## MODUŁY:
