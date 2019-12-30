@@ -7,5 +7,10 @@
 
 void irReceiverInitialize();
 
+void resetTimer();
+
+void TPMInitialize();
+
+
 
 #endif

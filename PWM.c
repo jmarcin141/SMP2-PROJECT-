@@ -15,12 +15,13 @@ void PWMInitialize(){
 	
 	TPM0->SC &= ~TPM_SC_CPWMS_MASK;
 	TPM0->SC &= ~TPM_SC_CMOD_MASK;
-	TPM0->SC |= TPM_SC_PS(7); // 48MHz/128 = 37.5kHz 
+	TPM0->SC |= TPM_SC_PS(4); // 48MHz/128 = 37.5kHz 
+														// 48MHz/16 = 3000kHz 
 	
 //	period = MOD + 1
 //	pulse width = CnV (duty Cycles)
 	
-	TPM0->MOD = TPM_MOD_MOD(4095);
+	TPM0->MOD = TPM_MOD_MOD(255);
 	
 	TPM0->CONTROLS[1].CnSC |= TPM_CnSC_MSB_MASK | TPM_CnSC_ELSB_MASK;
 	TPM0->CONTROLS[2].CnSC |= TPM_CnSC_MSB_MASK | TPM_CnSC_ELSB_MASK;

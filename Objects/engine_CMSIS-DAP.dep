@@ -1,5 +1,5 @@
 Dependencies for Project 'engine', Target 'CMSIS-DAP': (DO NOT MODIFY !)
-F (.\main.c)(0x5E00E8A4)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x5E0A6D03)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BDE7A)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm0plus.h)(0x5368ED1C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
@@ -8,7 +8,8 @@ I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h)(0x53030540)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h)(0x55FBCAE8)
 I (ADC.h)(0x5DF96434)
 I (engine.h)(0x5E00D8E9)
-I (irReceiver.h)(0x5E0004D5)
+I (irReceiver.h)(0x5E0946BA)
+I (uart.h)(0x5E0A5400)
 F (.\leds.c)(0x5DF9463F)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\leds.o --omf_browse .\objects\leds.crf --depend .\objects\leds.d)
 I (leds.h)(0x5DDC2D2A)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BDE7A)
@@ -29,7 +30,7 @@ I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z
 I (PWM.h)(0x5DF82D96)
 F (.\ADC.h)(0x5DF96434)()
 F (.\PWM.h)(0x5DF82D96)()
-F (.\PWM.c)(0x5E00E879)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\pwm.o --omf_browse .\objects\pwm.crf --depend .\objects\pwm.d)
+F (.\PWM.c)(0x5E06126F)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\pwm.o --omf_browse .\objects\pwm.crf --depend .\objects\pwm.d)
 I (PWM.h)(0x5DF82D96)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BDE7A)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm0plus.h)(0x5368ED1C)
@@ -37,7 +38,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmInstr.h)(0x53030540)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h)(0x53030540)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h)(0x55FBCAE8)
-F (.\engine.c)(0x5E00DBA5)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\engine.o --omf_browse .\objects\engine.crf --depend .\objects\engine.d)
+F (.\engine.c)(0x5E00FA03)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\engine.o --omf_browse .\objects\engine.crf --depend .\objects\engine.d)
 I (engine.h)(0x5E00D8E9)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BDE7A)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm0plus.h)(0x5368ED1C)
@@ -47,17 +48,26 @@ I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h)(0x53030540)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h)(0x55FBCAE8)
 I (PWM.h)(0x5DF82D96)
 F (.\engine.h)(0x5E00D8E9)()
-F (.\irReceiver.c)(0x5E00DC8D)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\irreceiver.o --omf_browse .\objects\irreceiver.crf --depend .\objects\irreceiver.d)
-I (irreceiver.h)(0x5E0004D5)
+F (.\irReceiver.c)(0x5E0A5972)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\irreceiver.o --omf_browse .\objects\irreceiver.crf --depend .\objects\irreceiver.d)
+I (irreceiver.h)(0x5E0946BA)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BDE7A)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm0plus.h)(0x5368ED1C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmInstr.h)(0x53030540)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h)(0x53030540)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h)(0x55FBCAE8)
-F (.\irReceiver.h)(0x5E0004D5)()
+F (.\irReceiver.h)(0x5E0946BA)()
+F (.\uart.c)(0x5E0A67F7)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\uart.o --omf_browse .\objects\uart.crf --depend .\objects\uart.d)
+I (uart.h)(0x5E0A5400)
+I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BDE7A)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm0plus.h)(0x5368ED1C)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmInstr.h)(0x53030540)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cmFunc.h)(0x53030540)
+I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h)(0x55FBCAE8)
+F (.\uart.h)(0x5E0A5400)()
 F (RTE\Device\MKL05Z32xxx4\startup_MKL05Z4.s)(0x55FBCAE8)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include--pd "__UVISION_VERSION SETA 526" --pd "_RTE_ SETA 1" --pd "MKL05Z32xxx4 SETA 1"--list .\listings\startup_mkl05z4.lst --xref -o .\objects\startup_mkl05z4.o --depend .\objects\startup_mkl05z4.d)
-F (RTE\Device\MKL05Z32xxx4\system_MKL05Z4.c)(0x5DF7D032)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\system_mkl05z4.o --omf_browse .\objects\system_mkl05z4.crf --depend .\objects\system_mkl05z4.d)
+F (RTE\Device\MKL05Z32xxx4\system_MKL05Z4.c)(0x5E0611C8)(--c99 --gnu -c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_CMSIS-DAP-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include-D__UVISION_VERSION="526" -D_RTE_ -DMKL05Z32xxx4-o .\objects\system_mkl05z4.o --omf_browse .\objects\system_mkl05z4.crf --depend .\objects\system_mkl05z4.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F3DAE)
 I (C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\MKL05Z4.h)(0x585BDE7A)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm0plus.h)(0x5368ED1C)

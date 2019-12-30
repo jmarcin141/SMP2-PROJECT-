@@ -1,27 +1,144 @@
 #include "irreceiver.h"
 
+
+#define RC5ToleranceTime 250  //150 - 350 [us]  
+#define RC5HalfBitTime 889 // [us]
+#define RC5BitTime 1778 // [us]
+
+#define ledRedOn (PTB->PCOR |= 1UL<<8)
+#define ledRedOff (PTB->PSOR |= 1UL<<8)
+
+
+uint8_t bit_position = 0; 
+/* 	Start 11, toggle 0/1, Address MSB|LSB, Command MSB|LSB
+		[S1|S2|Tgl|A4|A3|A2|A1|A0|C5|C4|C3|C2|C1|C0]
+		
+		Bit [0|1|2|3|4|5|6|7|8|9|10|11|12|13]    */
+
 void irReceiverInitialize(){
-		// IR receiver to PTA0
+		// IR receiver to PTB1
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
 	PORTB->PCR[1] |= PORT_PCR_MUX(1);
+	
+	
 	//PTB->PDDR &= ~(1UL<<1); 
 	//PORTB->PCR[1] |= PORT_PCR_PE_MASK;//pull enable
 	//PORTB->PCR[1] |= PORT_PCR_PS_MASK; // pull up
 }
 
-/*
+void TPMInitialize(){
+		SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
+	PORTB->PCR[8] |= PORT_PCR_MUX(1UL); 
+	PTB->PDDR |= 1UL<<8;
+	PTB->PSOR |= 1UL<<8;
+
+	
+	// IR receiver to PTB1
+	//SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
+	PORTB->PCR[1] |= PORT_PCR_MUX(1);
+	PORTB->PCR[1] |= PORT_PCR_PE_MASK;
+	PORTB->PCR[1] |= PORT_PCR_PS_MASK;
+	PORTB->PCR[1] |= PORT_PCR_IRQC(0x0B); // interrupt on falling and rising edge
+	
+	
+	
+	///////
+	
+	SIM->SOPT2 |= SIM_SOPT2_TPMSRC(1); 	// 01 MCGFLLCLK clock = 47972352u = 47,98MHz
+
+	SIM->SCGC6 |= SIM_SCGC6_TPM1_MASK; // clock enabled
+	
+ 
+	TPM1->SC &= ~TPM_SC_CPWMS_MASK;
+	TPM1->SC &= ~TPM_SC_CMOD_MASK;
+	TPM1->SC |= TPM_SC_PS(4); // 48MHz/16 = 3MHz 
+	
+//	period = MOD + 1
+//	period of overflow = 889 us
+	
+	TPM1->MOD = TPM_MOD_MOD(2666);
+		
+	// input compare
+	TPM1->CONTROLS[1].CnSC |= TPM_CnSC_ELSA_MASK | TPM_CnSC_ELSB_MASK;
+
+
+	//TPM1->CONTROLS[1].CnV = TPM_CnV_VAL(0);
+
+	// interrupts
+//	TPM0->CONTROLS[1].CnSC |= TPM_CnSC_CHIE_MASK;
+//	TPM0->CONTROLS[2].CnSC |= TPM_CnSC_CHIE_MASK;
+//	TPM0->CONTROLS[3].CnSC |= TPM_CnSC_CHIE_MASK;
+	
+	TPM1->SC |= TPM_SC_CMOD(1); // enable timer
+//	NVIC_ClearPendingIRQ(TPM0_IRQn);
+//	NVIC_EnableIRQ (TPM0_IRQn);
+//	NVIC_SetPriority(TPM0_IRQn,3);
+
+	/////
+	
+	
+	
+	
+	NVIC_ClearPendingIRQ(PORTB_IRQn);
+	NVIC_EnableIRQ(PORTB_IRQn);
+	NVIC_SetPriority(PORTB_IRQn,1);
+	
+}
+
+void PORTB_IRQHandler(){
+	//NVIC_ClearPendingIRQ(PORTB_IRQn);
+	//if (PORTB->PCR[1] & PORT_PCR_ISF_MASK){ ... }
+	
+
+	
+	
+	resetTimer();
+	
+	
+		while(!(TPM1->STATUS & TPM_STATUS_TOF_MASK )) { 
+			PTB->PCOR |= 1UL<<8;
+		}
+		
+			PTB->PSOR |= 1UL<<8;
+		
+		
+		
+		
+		PORTB->PCR[1] |= PORT_PCR_ISF_MASK;		
+}
+
+
+
+	
+	
+
+
+
+void TPM1_IRQHandler(){
+	//NVIC_ClearPendingIRQ(TPM1_IRQn);
+	//TPM1->SC |= TPM_SC_TOF_MASK;
+	
+	//ledRedOn;
+}
+
+
+
 //funkcja zerujaca timer oraz flage jego przepelnienia  
-zeruj_timer_i_flage_przepelnienia()  
+void resetTimer()  
 {  
-  resetuj_preskaler_timera  
-  zeruj_timer  
-  zgas_flage_przepelnienia_timera  
+	//while( !(TPM1->STATUS & TPM_STATUS_TOF_MASK )) { }
+	
+	TPM1->SC |= TPM_SC_CMOD(0); // wylaczenie , zaladowanie wypelnienia, wlaczenie TPM
+	TPM1->CNT = TPM_CNT_COUNT(0);
+	TPM1->SC |= TPM_SC_CMOD(1);
+	
+	TPM1->CONTROLS[1].CnSC |= TPM_CnSC_CHF_MASK;
 }  
   
   
 //---------------------------------------------------------------------------  
   
-  
+/*
 FUNKCJA_OBSLUGI_PRZERWANIA()  
 {  
   

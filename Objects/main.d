@@ -8,3 +8,4 @@
 .\objects\main.o: ADC.h
 .\objects\main.o: engine.h
 .\objects\main.o: irReceiver.h
+.\objects\main.o: uart.h
