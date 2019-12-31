@@ -13,7 +13,7 @@ void uartInitialize(){
 	PORTB->PCR[3] |= PORT_PCR_MUX(3UL); //ALT3 - UART0_TX PIN3
 	PORTB->PCR[4] |= PORT_PCR_MUX(3UL); //ALT3 - UART0_RX PIN4
 
-	// kurrr...   :(
+	
 	//PORTA->PCR[18] &= ~PORT_PCR_MUX(0); // extal 
 	//PORTA->PCR[19] &= ~PORT_PCR_MUX(0); // xtal
 	//OSC0->CR |= OSC_CR_ERCLKEN_MASK;
