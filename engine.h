@@ -10,13 +10,15 @@
 
 void engineInitialize();
 
-uint16_t engineStatus(uint8_t id_engine);
+char engineStatus(uint8_t id_engine);
 
 void engineLeft(uint8_t id_engine, uint16_t channel_source);
 
 void engineRight(uint8_t id_engine, uint16_t channel_source);
 
 void engineStop(uint8_t id_engine);
+
+void engineStart(uint8_t id_engine);
 
 
 void engine_IRQHandler();
