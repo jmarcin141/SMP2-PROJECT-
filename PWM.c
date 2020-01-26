@@ -46,7 +46,7 @@ void PWMsetCh1(uint16_t channel){
 
 	while( !(TPM0->STATUS & TPM_STATUS_TOF_MASK )) { }
 	
-	TPM0->SC |= TPM_SC_CMOD(0); // wylaczenie , zaladowanie wypelnienia, wlaczenie PWM
+	TPM0->SC |= TPM_SC_CMOD(0); // switching off, loading the filling, switching on the PWM
 	TPM0->CONTROLS[1].CnV = TPM_CnV_VAL(channel);
 	TPM0->SC |= TPM_SC_CMOD(1);
 }
