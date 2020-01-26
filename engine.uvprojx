@@ -447,6 +447,26 @@
               <FileType>5</FileType>
               <FilePath>.\uart.h</FilePath>
             </File>
+            <File>
+              <FileName>lvDecoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\lvDecoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>lvDecoder.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\lvDecoder.h</FilePath>
+            </File>
+            <File>
+              <FileName>PIT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\PIT.c</FilePath>
+            </File>
+            <File>
+              <FileName>PIT.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\PIT.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
