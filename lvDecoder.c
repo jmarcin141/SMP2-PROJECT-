@@ -6,11 +6,11 @@ void lvDecoder(uint8_t command){
 
 		if (command == 0x01){
 			engineStop(ENGINE0);
-			//PTB->PCOR |= 1UL<<8;
+
 		}
 		else if (command == 0x02){
 			engineStart(ENGINE0);
-			//PTB->PSOR |= 1UL<<8;
+
 		}
 		else if (command == 0x03){
 			// engineLeft

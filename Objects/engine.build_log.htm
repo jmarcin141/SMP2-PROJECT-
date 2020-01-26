@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.26.2.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Grzegorz Jurek, AGH, LIC=----
+License Information: Jakub Jakub-H, HP Inc., LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.26.2.0
@@ -21,13 +21,37 @@ Target DLL:      PEMicro\Pemicro_ArmCortexInterface.dll V1.11
 Dialog DLL:      TARMCM1.DLL V1.14.0.0
  
 <h2>Project:</h2>
-C:\Git\SMP2-PROJECT-\engine.uvprojx
+E:\AGH\Semestr 5\SMP2\Projekty - SMP - repo\SMP2-PROJECT-\engine.uvprojx
 Project File Date:  01/26/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'CMSIS-DAP'
-compiling PIT.c...
+compiling lvDecoder.c...
+engine.h(11): warning:  #1295-D: Deprecated declaration engineInitialize - give arg types
+  void engineInitialize();
+engine.h(24): warning:  #1295-D: Deprecated declaration engine_IRQHandler - give arg types
+  void engine_IRQHandler();
+lvDecoder.c(33): warning:  #1-D: last line of file ends without a newline
+  		
+lvDecoder.c: 3 warnings, 0 errors
+compiling irReceiver.c...
+irreceiver.h(8): warning:  #1295-D: Deprecated declaration irReceiverInitialize - give arg types
+  void irReceiverInitialize();
+irreceiver.h(10): warning:  #1295-D: Deprecated declaration resetTimer - give arg types
+  void resetTimer();
+irreceiver.h(12): warning:  #1295-D: Deprecated declaration TPMInitialize - give arg types
+  void TPMInitialize();
+irreceiver.h(14): warning:  #1295-D: Deprecated declaration ToggleInterruptEdge - give arg types
+  void ToggleInterruptEdge();
+irreceiver.h(16): warning:  #1295-D: Deprecated declaration irGetCommand - give arg types
+  uint8_t irGetCommand();
+irreceiver.h(17): warning:  #1295-D: Deprecated declaration irGetAddress - give arg types
+  uint8_t irGetAddress();
+irreceiver.h(18): warning:  #1295-D: Deprecated declaration irGetStatus - give arg types
+  uint8_t irGetStatus();
+irreceiver.h(20): warning:  #1295-D: Deprecated declaration PORTA_IRQHandler - give arg types
+  void PORTA_IRQHandler();
 PIT.h(9): warning:  #1295-D: Deprecated declaration PIT_IRQHandler - give arg types
   void PIT_IRQHandler();
 PIT.h(11): warning:  #1295-D: Deprecated declaration PITResetTimer - give arg types
@@ -38,18 +62,28 @@ PIT.h(14): warning:  #1295-D: Deprecated declaration PitStop - give arg types
   void PitStop();
 PIT.h(15): warning:  #1295-D: Deprecated declaration PitStart - give arg types
   void PitStart();
-PIT.c: 5 warnings, 0 errors
-compiling lvDecoder.c...
+uart.h(9): warning:  #1295-D: Deprecated declaration getDataOut - give arg types
+  uint8_t getDataOut();
+uart.h(10): warning:  #1295-D: Deprecated declaration getDataIn - give arg types
+  uint8_t getDataIn();
+uart.h(13): warning:  #1295-D: Deprecated declaration uartInitialize - give arg types
+  void uartInitialize();
+uart.h(14): warning:  #1295-D: Deprecated declaration uartEnable - give arg types
+  void uartEnable();
+uart.h(15): warning:  #1295-D: Deprecated declaration uartDisable - give arg types
+  void uartDisable();
+uart.h(17): warning:  #1295-D: Deprecated declaration uartReadData - give arg types
+  uint8_t uartReadData();
+uart.h(19): warning:  #1295-D: Deprecated declaration uartDemoHello - give arg types
+  void uartDemoHello();
 engine.h(11): warning:  #1295-D: Deprecated declaration engineInitialize - give arg types
   void engineInitialize();
 engine.h(24): warning:  #1295-D: Deprecated declaration engine_IRQHandler - give arg types
   void engine_IRQHandler();
-lvDecoder.c(33): warning:  #1-D: last line of file ends without a newline
-  		
-lvDecoder.c: 3 warnings, 0 errors
+irReceiver.c: 22 warnings, 0 errors
 linking...
-Program Size: Code=2944 RO-data=224 RW-data=24 ZI-data=352  
-".\Objects\engine.axf" - 0 Error(s), 8 Warning(s).
+Program Size: Code=3436 RO-data=224 RW-data=16 ZI-data=352  
+".\Objects\engine.axf" - 0 Error(s), 25 Warning(s).
 
 <h2>Software Packages used:</h2>
 
