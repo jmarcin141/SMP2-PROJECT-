@@ -2,7 +2,7 @@
 
 #include "PWM.h"
 
-// smp2 project
+
 #define bit_length 15
 
 void ADCInitialize(){
@@ -24,12 +24,9 @@ void ADCInitialize(){
 	ADC0->CFG1 |= ADC_CFG1_MODE(1); 
 	// 00 It is single-ended 8-bit conversion.
 	// 01 It is single-ended 12-bit conversion .
-	/*
-	01 When DIFF=0:It is single-ended 12-bit conversion ; when DIFF=1, it is differential 13-bit conversion with 2's complement output.
-	*/
-	//ADC0->SC1[0] |= ADC_SC1_AIEN_MASK;// aktywne przerwanie
-	//ADC0->SC1[0] &= ~ADC_SC1_DIFF_MASK; //- signle ended
-	//ADC0->SC1[0] |= ADC_SC1_ADCH(28); //3 //pte 22? 3 czy 22
+	// 01 When DIFF=0:It is single-ended 12-bit conversion ; when DIFF=1, it is differential 13-bit conversion with 2's complement output.
+	
+
 	
 	ADC0->CFG2 |= ADC_CFG2_ADHSC_MASK; // // high speed
 	ADC0->CFG2 |= ADC_CFG2_ADLSTS(3); // 11 - 2 extra ADCK cycles, 6 ADCK cycles total sample time
@@ -43,16 +40,6 @@ void ADCInitialize(){
 	
 	ADCCalibration();
 	
-	
-	//	TPM0->SC |= TPM_SC_CMOD(1);
-		//TPM0->SC |= TPM_SC_TOIE_MASK;
-//		NVIC_SetPriority(ADC0_IRQn,3);
-//		NVIC_ClearPendingIRQ(ADC0_IRQn);
-//		NVIC_EnableIRQ(ADC0_IRQn);
-//	
-//	ADC0->SC1[0] |= ADC_SC1_AIEN_MASK;
-	
-	//SIM->SOPT7 |= SIM_SOPT7_ADC0TRGSEL(4); // pit trigger 0/1 (4/5)
 }
 	// kalibracja
 void ADCCalibration(){
@@ -99,10 +86,6 @@ uint16_t ADCRead(uint8_t channel){
 			return nCode;
 			break;
 			
-			case AD_TEMP_SENS:
-				ADC0->R[0];
-			//return  (uint16_t)(25-((V_sensor/1000 - 0.719)/0.001749)); // [degreesC]
-			break;
 			
 			default:
 				return ADC0->R[0];
@@ -113,13 +96,6 @@ uint16_t ADCRead(uint8_t channel){
 
 void ADC0_IRQn_Handler(void){
 	NVIC_ClearPendingIRQ(ADC0_IRQn);
-	
-	//TPM0->SC |= TPM_SC_TOF_MASK; 
-	
-	//PTE->PTOR = (1UL << 29);
-	
-	//ADCRead(AD_PTB11_SENS);
-	
-	//PWMsetCh1(ADCRead(AD_PTB11_SENS));
+
 }
 

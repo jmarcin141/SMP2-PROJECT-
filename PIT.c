@@ -7,16 +7,6 @@
 
 void PitInitialize(void)
 {
-		PORTB->PCR[9] |= PORT_PCR_MUX(1UL); 
-	PTB->PDDR |= 1UL<<9;
-	PTB->PSOR |= 1UL<<9;
-	
-			PORTB->PCR[8] |= PORT_PCR_MUX(1UL); 
-	PTB->PDDR |= 1UL<<8;
-	PTB->PSOR |= 1UL<<8;
-	
-	
-	
   SIM->SCGC6 |= SIM_SCGC6_PIT_MASK; //clock to PIT
   PIT->MCR = 0x00;   //enable PIT module
 	PIT->MCR &= ~PIT_MCR_MDIS_MASK;
@@ -72,7 +62,6 @@ void PIT_IRQHandler(){
 	
 	PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK;
 	
-	PTB->PTOR |= 1<<9;	
 	
 	if( (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK ) ) {
 

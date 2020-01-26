@@ -31,22 +31,14 @@ void PWMInitialize(){
 	TPM0->CONTROLS[2].CnV = TPM_CnV_VAL(0);
 	TPM0->CONTROLS[3].CnV = TPM_CnV_VAL(0);	
 	
-	// interrupts
-//	TPM0->CONTROLS[1].CnSC |= TPM_CnSC_CHIE_MASK;
-//	TPM0->CONTROLS[2].CnSC |= TPM_CnSC_CHIE_MASK;
-//	TPM0->CONTROLS[3].CnSC |= TPM_CnSC_CHIE_MASK;
-	
 	TPM0->SC |= TPM_SC_CMOD(1);
-//	NVIC_ClearPendingIRQ(TPM0_IRQn);
-//	NVIC_EnableIRQ (TPM0_IRQn);
-//	NVIC_SetPriority(TPM0_IRQn,3);
 }
 
 void PWMsetCh1(uint16_t channel){
 
 	while( !(TPM0->STATUS & TPM_STATUS_TOF_MASK )) { }
 	
-	TPM0->SC |= TPM_SC_CMOD(0); // switching off,loading the filling, switching on the PWM
+	TPM0->SC |= TPM_SC_CMOD(0); // wylaczenie , zaladowanie wypelnienia, wlaczenie PWM
 	TPM0->CONTROLS[1].CnV = TPM_CnV_VAL(channel);
 	TPM0->SC |= TPM_SC_CMOD(1);
 }
@@ -74,15 +66,6 @@ void PWMset(uint16_t channel1, uint16_t channel2, uint16_t channel3){
 void TPM0_IRQHandler(){
 	NVIC_ClearPendingIRQ(TPM0_IRQn);
 	TPM0->SC |= TPM_SC_TOF_MASK;
-	
-	//TPM0->CONTROLS[1].CnV+=TPM_CnV_VAL(4);
-	//TPM0->CONTROLS[2].CnV+=TPM_CnV_VAL(3);
-	//TPM0->CONTROLS[3].CnV+=TPM_CnV_VAL(6);
-	
-	//if (TPM0->CONTROLS[2].CnV > 4900){
-	//TPM0->CONTROLS[1].CnV = TPM_CnV_VAL(0);
-	//TPM0->CONTROLS[2].CnV = TPM_CnV_VAL(0);
-	//TPM0->CONTROLS[3].CnV = TPM_CnV_VAL(0);
-	//}
+
 }
 

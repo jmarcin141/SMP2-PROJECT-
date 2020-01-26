@@ -9,5 +9,6 @@
 .\objects\irreceiver.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include\system_MKL05Z4.h
 .\objects\irreceiver.o: PIT.h
 .\objects\irreceiver.o: uart.h
+.\objects\irreceiver.o: engine.h
 .\objects\irreceiver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\cmath
 .\objects\irreceiver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

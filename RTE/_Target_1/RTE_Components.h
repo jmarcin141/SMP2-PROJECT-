@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'engine' 
+ * Project: 'uart2' 
  * Target:  'Target 1' 
  */
 

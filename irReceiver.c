@@ -1,6 +1,7 @@
 #include "irreceiver.h"
 #include "PIT.h"
 #include "uart.h"
+#include "engine.h"
 
 #include <cmath>
 
@@ -12,25 +13,10 @@
 #define RC5BitTime 1778 // [us]
 
 
-//#define RC5ToleranceTimeLDV (RC5ToleranceTime*20)
-//#define RC5HalfBitTimeLDV (RC5HalfBitTime*20) //(18641)
-//#define RC5BitTimeLDV (RC5BitTime*20) //(37284)
-
-//#define RC5HalfBitTimeMinLDV (float)(( (RC5BitTime - RC5ToleranceTime)*2/2UL - 1))
-//#define RC5HalfBitTimeMaxLDV (float)(( (RC5BitTime + RC5ToleranceTime)*20.97/2UL - 1))
-//#define RC5BitTimeMinLDV (float)(( (RC5BitTime - RC5ToleranceTime)*20.97 - 1))
-//#define RC5BitTimeMaxLDV (float)(( (RC5BitTime + RC5ToleranceTime)*20.97 - 1))
-
 #define RC5HalfBitTimeMinLDV (16020) //(uint32_t)(round( (RC5BitTime - RC5ToleranceTime)*20.97/2UL - 1))
 #define RC5HalfBitTimeMaxLDV (21263) //(uint32_t)(round( (RC5BitTime + RC5ToleranceTime)*20.97/2UL - 1))
 #define RC5BitTimeMinLDV (32041) //(uint32_t)(round( (RC5BitTime - RC5ToleranceTime)*20.97 - 1))
 #define RC5BitTimeMaxLDV (42526) //(uint32_t)(round( (RC5BitTime + RC5ToleranceTime)*20.97 - 1))
-
-
-//#define RC5HalfBitTimeMinLDV (RC5HalfBitTimeLDV - RC5ToleranceTimeLDV/2) 
-//#define RC5HalfBitTimeMaxLDV (RC5HalfBitTimeLDV + RC5ToleranceTimeLDV/2)
-//#define RC5BitTimeMinLDV (RC5BitTimeLDV - RC5ToleranceTimeLDV)
-//#define RC5BitTimeMaxLDV (RC5BitTimeLDV + RC5ToleranceTimeLDV) 
 
 
 
@@ -43,18 +29,6 @@
 
 
 
-//float RC5HalfBitTimeMinLDVf = ((RC5HalfBitTime*20.97-1)) - ((RC5ToleranceTime * 20.97-1)/2);
-
-//uint32_t RC5ToleranceTimeLDV = RC5ToleranceTime * 21;
-//uint32_t RC5HalfBitTimeLDV = RC5HalfBitTime*21;
-//uint32_t RC5BitTimeLDV = RC5BitTime*21; 
-
-
-//uint32_t RC5HalfBitTimeMinLDV = ((uint32_t)(RC5HalfBitTimeMinLDVf));
-
-//uint32_t RC5HalfBitTimeMaxLDV = ((RC5HalfBitTime*20.97-1)) + ((RC5ToleranceTime * 20.97-1)/2);
-//uint32_t RC5BitTimeMinLDV = (((RC5BitTime*20.97-1)) - (RC5ToleranceTime * 20.97-1));
-//uint32_t RC5BitTimeMaxLDV = (((RC5BitTime*20.97-1)) + (RC5ToleranceTime * 20.97-1));
 
 
 
@@ -108,34 +82,7 @@ void irReceiverInitialize(){
 	PORTB->PCR[8] |= PORT_PCR_MUX(1UL); 
 	PTB->PDDR |= 1UL<<8;
 	PTB->PSOR |= 1UL<<8;
-	
-	PORTB->PCR[10] |= PORT_PCR_MUX(1UL); 
-	PTB->PDDR |= 1UL<<10;
-	PTB->PSOR |= 1UL<<10;
-	
-	
-	
-	
-	uartInitialize();
-	//uartDemoHello();
-	/*
-	uartWriteData(0);
-	uartWriteData(0);
-	uartWriteData(0);
-	uartWriteData(0);
-	uartWriteData(( RC5HalfBitTimeMinLDV & 0xFF000000)>>24);
-	uartWriteData(( RC5HalfBitTimeMinLDV & 0x00FF0000)>>16);
-	uartWriteData(( RC5HalfBitTimeMinLDV & 0x0000FF00)>>8);
-	uartWriteData(( RC5HalfBitTimeMinLDV & 0x000000FF));
-	*/
-	
-	//uartWriteData(RC5BitTimeMinLDV);
-	//uartWriteData(RC5BitTimeMaxLDV);
-	
-	//uartWriteData(RC5HalfBitTime);
-	//uartWriteData(RC5HalfBitTimeMinLDV);
-	//uartWriteData(RC5HalfBitTimeMaxLDV);
-	
+
 	
 }
 
@@ -233,7 +180,7 @@ void PORTA_IRQHandler(){
 				dataTemp = 0;
 				halfBitCounter = 0;
 			resetTimer();
-			PTB->PCOR |= 1<<9;
+			//PTB->PCOR |= 1<<8;
 			//uartWriteData(0x1F);
 //      //konczymy czekajac na zbocze narastajace drugiego bitu startu  
 //  
@@ -265,180 +212,110 @@ void PORTA_IRQHandler(){
  } // else blad, co robic?...
 		 
 	 
-
-	
-	
-////	
-////   //PTB->PCOR |= 1<<9;
-////	//uartWriteData(0x20);
-////	
-//////    //sprawdzamy, czy czas polowy bitu jest zgodny z parametrami  
-////    if( (PIT->CHANNEL[0].CVAL > (RC5TimerValue - RC5HalfBitTimeMinLDV) ) || (PIT->CHANNEL[0].CVAL < (RC5TimerValue - RC5HalfBitTimeMaxLDV) ) ) { //|| (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) ) { // PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK)
-//////      wystapilo przepelnienie timera  
-//////      lub pólbit za krótki  
-//////      lub pólbit za dlugi  
-////			//PTB->PCOR |= 1<<8;
-//////      //Wykryto blad w sygnale.  
-//////      //Przerywamy dekodowanie tej ramki rozpoczynamy od nowa  
-////				bitNumber = 0;
-////		//uartWriteData(0x2E);
-////			break;  //break, by nie sprawdzal koncowego if(numer_bitu > 14)  
-//////  
-////    } else {  
-//////  
-//////      //Czas jest z zakresu pólbitów  
-//////  
-//////      //Które zbocze wywolalo przerwanie?  
-////      if( edge == 0 ){ // edge == 0 ??
-//////        //Przerwanie wywolalo zbocze opadajace bitu startowego nr 2  
-//////        //co oznacza, ze drugi bit startu odebrany prawidlowo  
-//////        zeruj_timer_i_flage_przepelnienia();  
-////					resetTimer();
-////					bitNumber++;
-////				
-////					//uartWriteData(0x2F);
-////					
-////      } else {  
-//////        //wykryto pierwsze zbocze narastajace bitu startowego nr 2  
-//////        zeruj_timer_i_flage_przepelnienia();  
-////				resetTimer();
-////				//PTB->PCOR |= 1<<9;
-////				//uartWriteData(0x2D);
-////      }  
-////    }  
     break;  
+
+
+
+
+
+
+  default:  
+   //uartWriteData(0xD0);
+//    //Tutaj odbieramy pozostale bity ramki  
 //  
-
-
-
-
+//    //W zaleznosci jaki czas uplynal od ostatniego zbocza (przerwania)  
+//    //Czy czas wykracza poza brzegowe parametry (min i max)  
+    if(   (PIT->CHANNEL[0].CVAL > (RC5TimerValue - RC5HalfBitTimeMinLDV) ) || (PIT->CHANNEL[0].CVAL < (RC5TimerValue - RC5BitTimeMaxLDV)  ) ) {// || (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) ){ //|| (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) ){// (PIT->CHANNEL[0].CVAL > (18642 + 5241) ) ){ (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) ||
+//      wystapilo przepelnienie timera  
+//      lub czas krótszy niz minimalny dla pólbitu  
+//      lub czas dluzszy niz maksymalny dla calego bitu  
+//      )   
+//      //Wykryto blad w sygnale.  
+//      //Przerywamy dekodowanie tej ramki rozpoczynamy od nowa  
+//      numer_bitu = 1;  
+//      break;  //break, by nie sprawdzal koncowego if(numer_bitu > 14)  
+			//uartWriteData(0xDE);
+				bitNumber = 0;
+				break;
 //  
-//    //--- pozostale bity --------------------------------------  
+//      //Czy minal czas pólbitu?  
+    } else if(  PIT->CHANNEL[0].CVAL < (RC5TimerValue - RC5HalfBitTimeMaxLDV) )  { //PIT->CHANNEL[0].CVAL < (18642 - 5241) 
+//             czas równy lub krótszy niz maksymalny dla pólbitu  
+//             )  
+//    {  
+//      //Uplynal czas równy polowie bitu  
 //  
-
-					default:
-						 
-					 if( (PIT->CHANNEL[0].CVAL < (RC5TimerValue - RC5HalfBitTimeMinLDV) ) || (PIT->CHANNEL[0].CVAL > (RC5TimerValue - RC5HalfBitTimeMaxLDV) ) ) {
-						 // wykryto polowe drugiego bitu startu po 889us
-					 
-					 if (edge == 1){
-						resetTimer();
-					 
-						 
-				 } else if (edge == 0){
-					 
-					 resetTimer();
-					 
-				 }
-			 }
-				
-			 
-			 
-
-
-
-
-
-
-
-
-////////  default:  
-////////   //uartWriteData(0xD0);
-//////////    //Tutaj odbieramy pozostale bity ramki  
-//////////  
-//////////    //W zaleznosci jaki czas uplynal od ostatniego zbocza (przerwania)  
-//////////    //Czy czas wykracza poza brzegowe parametry (min i max)  
-////////    if(   (PIT->CHANNEL[0].CVAL > (RC5TimerValue - RC5HalfBitTimeMinLDV) ) || (PIT->CHANNEL[0].CVAL < (RC5TimerValue - RC5BitTimeMaxLDV)  ) ) {// || (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) ){ //|| (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) ){// (PIT->CHANNEL[0].CVAL > (18642 + 5241) ) ){ (PIT->CHANNEL[0].TFLG & PIT_TFLG_TIF_MASK) ||
-//////////      wystapilo przepelnienie timera  
-//////////      lub czas krótszy niz minimalny dla pólbitu  
-//////////      lub czas dluzszy niz maksymalny dla calego bitu  
-//////////      )   
-//////////      //Wykryto blad w sygnale.  
-//////////      //Przerywamy dekodowanie tej ramki rozpoczynamy od nowa  
-//////////      numer_bitu = 1;  
-//////////      break;  //break, by nie sprawdzal koncowego if(numer_bitu > 14)  
-////////			//uartWriteData(0xDE);
-////////				bitNumber = 0;
-////////				break;
-//////////  
-//////////      //Czy minal czas pólbitu?  
-////////    } else if(  PIT->CHANNEL[0].CVAL < (RC5TimerValue - RC5HalfBitTimeMaxLDV) )  { //PIT->CHANNEL[0].CVAL < (18642 - 5241) 
-//////////             czas równy lub krótszy niz maksymalny dla pólbitu  
-//////////             )  
-//////////    {  
-//////////      //Uplynal czas równy polowie bitu  
-//////////  
-////////	//      //sprawdzamy, czy to druga polowa bitu  
-////////					if(halfBitCounter == 1) {  
-////////	//  
-////////	//        //Tak to druga polówka aktualnie dekodowanego bitu  
-////////	//        //i jestesmy aktualnie w polowie czasu odbieranego  
-////////	//        //bitu. Jest to moment, w którym ustalamy wartosc  
-////////	//        //odebranego bitu na podstawie kierunku zbocza.  
-////////	//  
-////////	//        //Przesun dane o jeden bit w lewo, by zrobic miejsce  
-////////	//        //na odebrany bit  
-////////	//        dane_temp << 1 
-////////						dataTemp <<=1;
-////////	  			//uartWriteData(0xDF);
-////////	//        //Jezeli przerwanie wywolalo zbocze opadajace  
-////////	//        //oznacza to, ze odebralismy jedynke wiec ja dodajemy  
-////////	        if( edge == 0){ // PORTA->PCR[11] & PORT_PCR_IRQC(0x0A)){ // bylo zbocze opadajace) {  
-////////	          //dane_temp |= 1;  
-////////						dataTemp |=1;
-////////						//uartWriteData(0xDD);
-////////	        }  
-//////////  
-//////////        //zeruj licznik pólbitów  
-//////////        polbit_licznik = 0;  
-////////					halfBitCounter = 0;
-////////					//uartWriteData(0xDC);
-//////////        //zwieksz licznik odebranych bitów  
-//////////        numer_bitu++;  
-////////					bitNumber++;
-//////////  
-////////			} else {  
-//////////  
-//////////        //To pierwsza polowa dekodowanego bitu, czyli jestesmy  
-//////////        //aktualnie na poczatku czasu przesylanego bitu.  
-//////////  
-//////////        //Ustawiamy licznik pólbitów  
-//////////        polbit_licznik = 1;  
-////////				halfBitCounter =1;
-////////				//uartWriteData(0xDB);
-//////////  
-////////      }  
-//////////  
-//////////      //w obu przypadkach pólbitów  
-//////////      zeruj_timer_i_flage_przepelnienia();  
-////////			resetTimer();
-//////////  
-////////    } else {  
-//////////  
-//////////      //Uplynal czas calego bitu i jestesmy aktualnie w polowie  
-//////////      //odbieranego bitu. Jest to moment, w którym ustalamy wartosc  
-//////////      //odebranego bitu na podstawie kierunku zbocza.  
-//////////  
-//////////      //Przesun rejestr odbiorczy o jeden bit w lewo by zrobic  
-//////////      //miejsce na odebrany bit  
-//////////      dane_temp << 1  
-////////			dataTemp <<=1;
-//////////  
-//////////      //Jezeli przerwanie wywolalo zbocze opadajace  
-//////////      //oznacza to, ze odebralismy jedynke wiec ja dodajemy  
-////////      if( edge == 0 ) { // PORTA->PCR[11] & PORT_PCR_IRQC(0x0A) ){ //bylo zbocze opadajace) {  
-//////////        dane_temp |= 1;  
-////////				dataTemp |=1;
-////////			//	uartWriteData(0xD1);
-////////      }  
-//////////  
-//////////      zeruj_timer_i_flage_przepelnienia();  
-////////			resetTimer();
-////////			bitNumber++;
-////////  	//uartWriteData(0xD2);
-//////////      //zwieksz licznik bitów  
-//////////      numer_bitu++;  
-////////    }  
+	//      //sprawdzamy, czy to druga polowa bitu  
+					if(halfBitCounter == 1) {  
+	//  
+	//        //Tak to druga polówka aktualnie dekodowanego bitu  
+	//        //i jestesmy aktualnie w polowie czasu odbieranego  
+	//        //bitu. Jest to moment, w którym ustalamy wartosc  
+	//        //odebranego bitu na podstawie kierunku zbocza.  
+	//  
+	//        //Przesun dane o jeden bit w lewo, by zrobic miejsce  
+	//        //na odebrany bit  
+	//        dane_temp << 1 
+						dataTemp <<=1;
+	  			//uartWriteData(0xDF);
+	//        //Jezeli przerwanie wywolalo zbocze opadajace  
+	//        //oznacza to, ze odebralismy jedynke wiec ja dodajemy  
+	        if( edge == 0){ // PORTA->PCR[11] & PORT_PCR_IRQC(0x0A)){ // bylo zbocze opadajace) {  
+	          //dane_temp |= 1;  
+						dataTemp |=1;
+						//uartWriteData(0xDD);
+	        }  
+//  
+//        //zeruj licznik pólbitów  
+//        polbit_licznik = 0;  
+					halfBitCounter = 0;
+					//uartWriteData(0xDC);
+//        //zwieksz licznik odebranych bitów  
+//        numer_bitu++;  
+					bitNumber++;
+//  
+			} else {  
+//  
+//        //To pierwsza polowa dekodowanego bitu, czyli jestesmy  
+//        //aktualnie na poczatku czasu przesylanego bitu.  
+//  
+//        //Ustawiamy licznik pólbitów  
+//        polbit_licznik = 1;  
+				halfBitCounter =1;
+				//uartWriteData(0xDB);
+//  
+      }  
+//  
+//      //w obu przypadkach pólbitów  
+//      zeruj_timer_i_flage_przepelnienia();  
+			resetTimer();
+//  
+    } else {  
+//  
+//      //Uplynal czas calego bitu i jestesmy aktualnie w polowie  
+//      //odbieranego bitu. Jest to moment, w którym ustalamy wartosc  
+//      //odebranego bitu na podstawie kierunku zbocza.  
+//  
+//      //Przesun rejestr odbiorczy o jeden bit w lewo by zrobic  
+//      //miejsce na odebrany bit  
+//      dane_temp << 1  
+			dataTemp <<=1;
+//  
+//      //Jezeli przerwanie wywolalo zbocze opadajace  
+//      //oznacza to, ze odebralismy jedynke wiec ja dodajemy  
+      if( edge == 0 ) { // PORTA->PCR[11] & PORT_PCR_IRQC(0x0A) ){ //bylo zbocze opadajace) {  
+//        dane_temp |= 1;  
+				dataTemp |=1;
+			//	uartWriteData(0xD1);
+      }  
+//  
+//      zeruj_timer_i_flage_przepelnienia();  
+			resetTimer();
+			bitNumber++;
+  	//uartWriteData(0xD2);
+//      //zwieksz licznik bitów  
+//      numer_bitu++;  
+    }  
 //  
 //    //--- czy to juz ostatni bit? --------------------------------  
 //  
@@ -449,27 +326,24 @@ void PORTA_IRQHandler(){
 //      //1-Dane sa na szesciu najmlodszych bitach  
 //      dane_odebrane = dane_temp[komenda]; 
 			dataReceived = (dataTemp);// & 0x3F); //0b00111111;
-			 // uartWriteData(0xAF);
-				//uartWriteData(dataReceived);
+			  uartWriteData(0xCC);
+				uartWriteData(dataReceived);
 			//dataTemp>>=6;
 //      //2-Nr urzadzenia (adres) i bit toggle  
 //      status = dane_temp[toggle bit oraz nr urzadzenia];
-				deviceAddress = (dataTemp>>8);// & 0x3F);
-			
+				uartWriteData(0xAA);
+				deviceAddress = ( (dataTemp>>8));
+				uartWriteData(deviceAddress);
 			
 			status = 1;
-				//uartWriteData(0xBF);
-			//uartWriteData(status);
 
-			//	uartWriteData((dataTemp>>6)&0x3F);
-//  
-//      //przygotuj sie do odbioru nowej ramki  
-//      numer_bitu = 1;  
+
+
 			bitNumber=0;
 			
-			//PTB->PCOR |= 1<<9;
-				//PORTA_IRQHandler wylacz przerwania
-//      //koniec odbioru ramki ... uff nareszcie :-)  
+			PTB->PSOR |= 1<<8;
+
+
     }  
     break;  
   }
@@ -494,11 +368,17 @@ halfBitCounter=0;
   }  
 //
 
-
-		//bitNumber = 0;
-		//PitStop();
 	
-	PTB->PSOR |= 1<<8;
+	if (irGetCommand() == 0xAA){
+		engineStart(ENGINE0);
+		engineLeft(ENGINE0,200);
+	}
+	else if (irGetCommand() == 0xAB){
+		engineStart(ENGINE0);
+		engineRight(ENGINE0,200);
+	}
+	
+
 	
 	PORTA->PCR[11] |= PORT_PCR_ISF_MASK;		
 }
@@ -551,8 +431,7 @@ void TPMInitialize(){
 void TPM1_IRQHandler(){
 	//NVIC_ClearPendingIRQ(TPM1_IRQn);
 	//TPM1->SC |= TPM_SC_TOF_MASK;
-	
-	//ledRedOn;
+
 }
 
 

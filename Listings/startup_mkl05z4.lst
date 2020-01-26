@@ -571,11 +571,11 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0+ --apcs=inter
 work --depend=.\objects\startup_mkl05z4.d -o.\objects\startup_mkl05z4.o -I.\RTE
-\_CMSIS-DAP -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include -IC:\Keil_
-v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include --predefine="__EVAL SET
-A 1" --predefine="__UVISION_VERSION SETA 526" --predefine="_RTE_ SETA 1" --pred
-efine="MKL05Z32xxx4 SETA 1" --list=.\listings\startup_mkl05z4.lst RTE\Device\MK
-L05Z32xxx4\startup_MKL05Z4.s
+\_Target_1 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include -IC:\Keil_v
+5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.15.0\Device\Include --predefine="__EVAL SETA
+ 1" --predefine="__UVISION_VERSION SETA 526" --predefine="_RTE_ SETA 1" --prede
+fine="MKL05Z32xxx4 SETA 1" --list=.\listings\startup_mkl05z4.lst RTE\Device\MKL
+05Z32xxx4\startup_MKL05Z4.s
 
 
 
